@@ -875,6 +875,11 @@ function lunch()
     fixup_common_out_dir
 
     set_stuff_for_environment
+
+    echo "";
+    cat $(gettop)/build/make/blki_ascii_logo;
+    echo"";
+
     [[ -n "${ANDROID_QUIET_BUILD:-}" ]] || printconfig
 
     if [ "${TARGET_BUILD_VARIANT}" = "userdebug" ] && [[  -z "${ANDROID_QUIET_BUILD}" ]]; then
