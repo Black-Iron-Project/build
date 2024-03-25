@@ -861,16 +861,16 @@ function lunch()
 
     if ! check_product $product
     then
-        # if we can't find a product, try to grab it off the YAAP GitHub
+        # if we can't find a product, try to grab it off the Blackiron GitHub
         T=$(gettop)
         cd $T > /dev/null
-        vendor/yaap/build/tools/roomservice.py $product
+        vendor/blackiron/build/tools/roomservice.py $product
         cd - > /dev/null
         check_product $product
     else
         T=$(gettop)
         cd $T > /dev/null
-        vendor/yaap/build/tools/roomservice.py $product true
+        vendor/blackiron/build/tools/roomservice.py $product true
         cd - > /dev/null
     fi
 
