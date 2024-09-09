@@ -3614,7 +3614,7 @@ class BlockDifference(object):
     #   compression_time:   75s  | 265s               | 719s
     #   decompression_time: 15s  | 25s                | 25s
 
-    if 0:
+    if not self.src:
       brotli_cmd = ['brotli', '--quality=6',
                     '--output={}.new.dat.br'.format(self.path),
                     '{}.new.dat'.format(self.path)]
