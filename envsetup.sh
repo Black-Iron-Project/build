@@ -1411,7 +1411,7 @@ function force_push() {
     local remote_name="$1"
     local remote_branch="$2"
     local manifest_path="android/snippets/blki.xml"
-    local exclusion_list=("android" "OTA" "packages/apps/FaceUnlock" "vendor/gms")
+    local exclusion_list=("android" "OTA" "packages/apps/FaceUnlock" "vendor/gms" "frameworks/base")
     echo "Pushing changes to remote '$remote_name' in repositories from manifest: $manifest_path"
     while IFS= read -r line; do
         if [[ $line == *"<project "* && $line == *"remote="* ]]; then
