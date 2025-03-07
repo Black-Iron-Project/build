@@ -28,6 +28,9 @@ PRODUCT_MEMTAG_HEAP_ASYNC_DEFAULT_INCLUDE_PATHS := \
     system/bpf \
     system/netd/netutil_wrappers \
     system/netd/server
+    
+PRODUCT_MEMTAG_HEAP_EXCLUDE_PATHS := \
+    frameworks/native/services/surfaceflinger
 
 PRODUCT_MEMTAG_HEAP_EXCLUDE_PATHS := \
     frameworks/native/services/surfaceflinger
