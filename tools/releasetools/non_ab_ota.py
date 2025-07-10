@@ -214,6 +214,59 @@ else if get_stage("%(bcb_dev)s") == "3/3" then
   # Dump fingerprints
   script.Print("Target: {}".format(target_info.fingerprint))
 
+  date = target_info.GetBuildProp("ro.blackiron.build.date")
+  version = target_info.GetBuildProp("ro.blackiron.version")
+
+  if target_info.GetBuildProp("ro.product.model") is not None:
+    model = target_info.GetBuildProp("ro.product.model")
+  script.Print("-------------------------------------------------------");
+  script.Print(" ______  _             _        _____                  ");
+  script.Print("(____  \| |           | |      (_____)                 ");   
+  script.Print(" ____)  ) | ____  ____| |  _      _    ____ ___  ____  ");
+  script.Print("|  __  (| |/ _  |/ ___) | / )    | |  / ___) _ \|  _ \ ");
+  script.Print("| |__)  ) ( ( | ( (___| |< (    _| |_| |  | |_| | | | |");
+  script.Print("|______/|_|\_||_|\____)_| \_)  (_____)_|   \___/|_| |_|");
+  script.Print("                                                       ");
+  script.Print("-------------------------------------------------------");
+  script.Print("=======================================================");
+  script.Print("              BlackIron Project for %s"%(model)         );               
+  script.Print("                  by ralf979                           ");
+  script.Print("              Version: %s"%(version)                    );
+  script.Print("              Compiled on: %s"%(date)                   );
+  script.Print("=======================================================");
+  script.Print(" Android version  : %s"%(androidver));
+  script.Print(" Security patch   : %s"%(securep));
+  script.Print(" Build date       : %s"%(buildday));
+  script.Print("=======================================================");
+  script.Print(" Device           : %s"%(device));
+  script.Print(" Manufacturer     : %s"%(manufacturer));
+  script.Print("=======================================================");
+  else:
+    name = target_info.GetBuildProp("ro.product.name")
+  script.Print("-------------------------------------------------------");
+  script.Print(" ______  _             _        _____                  ");
+  script.Print("(____  \| |           | |      (_____)                 ");   
+  script.Print(" ____)  ) | ____  ____| |  _      _    ____ ___  ____  ");
+  script.Print("|  __  (| |/ _  |/ ___) | / )    | |  / ___) _ \|  _ \ ");
+  script.Print("| |__)  ) ( ( | ( (___| |< (    _| |_| |  | |_| | | | |");
+  script.Print("|______/|_|\_||_|\____)_| \_)  (_____)_|   \___/|_| |_|");
+  script.Print("                                                       ");
+  script.Print("-------------------------------------------------------");
+  script.Print("=======================================================");
+  script.Print("              BlackIron Project for %s"%(model)         );               
+  script.Print("                  by ralf979                           ");
+  script.Print("              Version: %s"%(version)                    );
+  script.Print("              Compiled on: %s"%(date)                   );
+  script.Print("=======================================================");
+  script.Print(" Android version  : %s"%(androidver));                  
+  script.Print(" Security patch   : %s"%(securep));
+  script.Print(" Build date       : %s"%(buildday));
+  script.Print("=======================================================");
+  script.Print(" Device           : %s"%(device));
+  script.Print(" Manufacturer     : %s"%(manufacturer));
+  script.Print("=======================================================");
+
+  script.AppendExtra("ifelse(is_mounted(\"/system\"), unmount(\"/system\"));")
   device_specific.FullOTA_InstallBegin()
 
   CopyInstallTools(output_zip)
