@@ -1223,6 +1223,23 @@ unset syswrite
 unset tomlgrep
 unset treegrep
 
+# Function to remove LOCAL_OVERRIDES_PACKAGES line from NexusLauncherRelease Android.mk (Needed for QuickSwitch)
+function remove_nexus_launcher_overrides() {
+    local android_mk_file="$ANDROID_BUILD_TOP/vendor/gms/system_ext/packages/privileged_apps/NexusLauncherRelease/Android.mk"
+
+    if [ -f "$android_mk_file" ]; then
+        # Check if the line exists
+        if grep -q "LOCAL_OVERRIDES_PACKAGES.*Launcher3.*Launcher3QuickStep.*Trebuchet.*QuickSearchBox" "$android_mk_file"; then
+            echo "Removing LOCAL_OVERRIDES_PACKAGES line from NexusLauncherRelease Android.mk..."
+
+            # Remove the line using sed
+            sed -i '/^LOCAL_OVERRIDES_PACKAGES.*Launcher3.*Launcher3QuickStep.*Trebuchet.*QuickSearchBox/d' "$android_mk_file"
+
+            echo "Successfully removed LOCAL_OVERRIDES_PACKAGES line."
+        fi
+    fi
+}
+
 function setup_ccache() {
     if [ -z "${CCACHE_EXEC}" ]; then
         if command -v ccache &>/dev/null; then
@@ -1913,6 +1930,8 @@ addcompletions
 
 remove_broken_build_tools
 setup_ccache
+
+remove_nexus_launcher_overrides
 
 export ANDROID_BUILD_TOP=$(gettop)
 export ANDROID_KEY_PATH="$ANDROID_BUILD_TOP/vendor/lineage-priv/keys"
